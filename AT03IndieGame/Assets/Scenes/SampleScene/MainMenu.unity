@@ -274,6 +274,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821c1ea8ed081a446b7e833f30694b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColour: {r: 1, g: 0, b: 0, a: 1}
+  highlightedColour: {r: 0.1459594, g: 0.16891128, b: 0.754717, a: 1}
+  onActivate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &650029581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -525,6 +531,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821c1ea8ed081a446b7e833f30694b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColour: {r: 1, g: 0, b: 0, a: 1}
+  highlightedColour: {r: 0.1459594, g: 0.16891128, b: 0.754717, a: 1}
+  onActivate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1032558322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,7 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -937,6 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281a42513bb720a4d9f8899d91c0c87c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bufferTime: 0.5
 --- !u!1 &2022952216
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +1001,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821c1ea8ed081a446b7e833f30694b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultColor: {r: 1, g: 1, b: 1, a: 0}
+  selectedColour: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+  highlightedColour: {r: 0.1459594, g: 0.16891128, b: 0.754717, a: 1}
+  onActivate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2022952219
 MonoBehaviour:
   m_ObjectHideFlags: 0
