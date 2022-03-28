@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class MenuButton : MonoBehaviour
+public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public delegate void MenuButtonAction();
 
@@ -20,37 +20,40 @@ public class MenuButton : MonoBehaviour
 
     private bool mouseOver = false;
     private Image image;
-    //menu instance
+    private MenuNavigation instance;
 
-    public event MenuButtonAction ActivateEvent;
-    public event MenuButtonAction SelectEvent;
+    public event MenuButtonAction ActivateEvent = delegate { };
+    public event MenuButtonAction SelectEvent = delegate { };
 
     private void Awake()
     {
         TryGetComponent(out image);
         //Try get menu instance reference
-        {
-
-        }
-
+        transform.parent.TryGetComponent(out instance);
     }
-        private void Start()
-        {
-            image.color = defaultColor;
-        }
+
+    private void Start()
+    {
+        image.color = defaultColor;
+    }
 
 
     private void Update()
     {
         if (mouseOver = true && Input.GetButtonDown("Fire1") == true)
         {
-            //it the selected button for the mebu is this button
-            //Activate();
-            //else
-            //Select();
+            //it the selected button for the menu is this button
+            if (instance.SelectedButton == this)
+            {
+                Activate();
+            }
+            else
+            {
+                Select();
+            }
         }
     }
-    
+
 
     /// <summary>
     /// Use this method to invoke the selection event for the button.
@@ -70,5 +73,54 @@ public class MenuButton : MonoBehaviour
     {
         ActivateEvent.Invoke();
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("Mouse enterd");
+        mouseOver = true;
+        if (instance.SelectedButton != this)
+        {
+            image.color = highlightedColour;
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        mouseOver = false;
+        if (image.color == highlightedColour && this != instance.SelectedButton)
+        {
+            image.color = defaultColor;
+        }
+    }
+
+    private void OnActivate()
+    {
+        onActivate.Invoke();
+    }
+
+    private void OnSelect()
+    {
+        if (instans.SelectedButtom != null)
+        {
+            instance.SelectedButton.imaghe.color = instance.SelectedButtom.defaultColor;
+        }
+        instance.SelectedButton = this;
+        image.color = selectedColour; selectedColour;
+    }
+
+    private void OnEnable()
+
+    {
+        ActivateEvent += OnActivate;
+        SelectEvent += OnSelect;
+    }
+
+    private void OnDisable()
+
+    {
+        ActivateEvent -= OnActivate;
+        SelectEvent -= OnSelect;
+    }
+
 
 }

@@ -17,22 +17,22 @@ public class MenuNavigation : MonoBehaviour
         get { return currentButton; }
         set
         {
-            if(Buttons.Contains(value) == true)
+            if (Buttons.Contains(value) == true)
             {
                 currentButton = value;
                 CurrentButtonIndex = Buttons.IndexOf(currentButton);
             }
         }
     }
-    
-    
+
+
     public List<MenuButton> Buttons { get; private set; } = new List<MenuButton>();
     public int CurrentButtonIndex
 
     {
         get { return currentButtonIndex; }
-        set 
-        { 
+        set
+        {
             currentButtonIndex = value;
             if (currentButtonIndex >= Buttons.Count)
             {
@@ -49,11 +49,11 @@ public class MenuNavigation : MonoBehaviour
 
     private void Awake()
     {
-        foreach(MenuButton button in GetComponentsInChildren<MenuButton>())
+        foreach (MenuButton button in GetComponentsInChildren<MenuButton>())
         {
             Buttons.Add(button);
         }
-        // set up vertical input axis event
+        VerticalInputEvent = new MenuInputDelegate(SelectButton);
     }
 
 
@@ -61,31 +61,57 @@ public class MenuNavigation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Buttons.Count > 0)
+        if (Buttons.Count > 0)
         {
-            //select first button
+            SelectButton(0);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(timer < 0)
+        #region
+        if (timer < 0)
         {
             float axis = Input.GetAxis("Vertical");
-            if(axis != 0)
+            if (axis != 0)
             {
                 VerticalInputEvent.Invoke(axis);
             }
             else
             {
                 timer += Time.deltaTime;
-                if(timer >= bufferTime)
+                if (timer >= bufferTime)
                 {
                     timer = -1;
                 }
             }
+            #endregion
+
+            if (SelectedButton != null)
+            {
+                if (Input.GetButtonDown("") == true)
+                {
+
+                }
+            }
+
+
+
         }
     }
-   
+
+    private void SelectButton(float axis)
+    {
+        if (axis < 0)
+        {
+            CurrentButtonIndex++;
+        }
+        else if (axis > 0)
+        {
+            CurrentButtonIndex--;
+        }
+        Buttons[currentButtonIndex].Select();
+        timer = 0;
+    }
 }
